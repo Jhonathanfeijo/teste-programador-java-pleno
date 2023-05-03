@@ -38,27 +38,23 @@ public class Pedido {
 	private BigDecimal valorTotal;
 
 	public Pedido(List<ItemPedido> itens, String descricao) {
-		
 		this.id = null;
 		this.descricao = descricao;
 		this.dataEmissao = LocalDateTime.now();
-		this.valorTotal = obterValorTotal(itens);
-		this.itensPedido = atribuirPedidoEmItens(itens);
-		
+		atribuirPedidoEmItens();
+		calcularValorTotalPedido(this.itensPedido);
 	}
-	
-	private List<ItemPedido> atribuirPedidoEmItens(List<ItemPedido> itens){
-		itens.forEach(item -> {
+
+	public void atribuirPedidoEmItens() {
+		this.itensPedido.forEach(item -> {
 			item.setPedido(this);
 		});
-		return itens;
 	}
-	
-	private BigDecimal obterValorTotal(List<ItemPedido> itens) {
-		BigDecimal valorPedido = new BigDecimal("0.0");
+
+	public void calcularValorTotalPedido(List<ItemPedido> itens) {
+		this.valorTotal = new BigDecimal("0.0");
 		itens.forEach(item -> {
 			this.valorTotal = this.valorTotal.add(item.getValorItem());
 		});
-		return valorPedido;
 	}
 }

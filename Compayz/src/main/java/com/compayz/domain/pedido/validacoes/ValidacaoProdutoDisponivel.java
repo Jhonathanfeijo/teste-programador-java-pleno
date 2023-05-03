@@ -16,8 +16,8 @@ public class ValidacaoProdutoDisponivel implements ValidacaoRegistrarPedido {
 	@Override
 	public void validar(DadosCadastroPedido dados) {
 		dados.getItensPedido().forEach(item -> {
-			Produto produto = produtoRepository.getReferenceById(item.idProduto());
-			boolean produtoDisponivel = item.quantidade() <= produto.getQuantidade();
+			Produto produto = produtoRepository.getReferenceById(item.getIdProduto());
+			boolean produtoDisponivel = item.getQuantidade() <= produto.getQuantidade();
 			if (!produtoDisponivel)
 				throw new RuntimeException("Produto não disponível");
 		});

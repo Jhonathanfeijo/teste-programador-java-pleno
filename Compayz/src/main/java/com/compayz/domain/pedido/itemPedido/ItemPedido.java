@@ -44,4 +44,9 @@ public class ItemPedido {
 		this.quantidade = quantidade;
 		this.valorItem = produto.getValor().multiply(new BigDecimal(quantidade));
 	}
+
+	public BigDecimal getValorItem() {
+		BigDecimal valorProduto = this.produto.getValor();
+		return valorProduto.multiply(new BigDecimal(this.quantidade));
+	}
 }

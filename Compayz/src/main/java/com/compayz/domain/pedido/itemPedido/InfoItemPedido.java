@@ -2,8 +2,15 @@ package com.compayz.domain.pedido.itemPedido;
 
 import java.math.BigDecimal;
 
-public record InfoItemPedido(String descricao, BigDecimal valorUnitario, Integer quantidade) {
-	public InfoItemPedido(ItemPedido item) {
-		this(item.getProduto().getDescricao(), item.getProduto().getValor(), item.getQuantidade());
-	}
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+public class InfoItemPedido {
+
+	private String descricao;
+	private BigDecimal valorProduto;
+	private Integer quantidade;
+	private BigDecimal valorItem;
 }

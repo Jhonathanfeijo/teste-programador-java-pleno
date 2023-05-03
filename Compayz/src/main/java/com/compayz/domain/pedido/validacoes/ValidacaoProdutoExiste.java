@@ -15,7 +15,7 @@ public class ValidacaoProdutoExiste implements ValidacaoRegistrarPedido {
 	@Override
 	public void validar(DadosCadastroPedido dados) {
 		dados.getItensPedido().forEach(item ->{
-			boolean existeProduto = produtoRepository.existsById(item.idProduto());
+			boolean existeProduto = produtoRepository.existsById(item.getIdProduto());
 			if(!existeProduto)
 				throw new RuntimeException("Produto não existe");
 		});
