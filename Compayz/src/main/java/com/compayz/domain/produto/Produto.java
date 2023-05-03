@@ -32,4 +32,8 @@ public class Produto {
 	public void descontarEstoque(Integer quantidade) {
 		this.quantidade -= quantidade;
 	}
+
+	public void adicionarEstoque(Integer quantidade) {
+		this.quantidade += quantidade;
+	}
 }

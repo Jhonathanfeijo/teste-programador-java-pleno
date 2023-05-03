@@ -19,9 +19,13 @@ public class PedidoService {
 	@Autowired
 	private PedidoRepository pedidoRepository;
 
+	@Autowired
+	private PedidoMapper pedidoMapper;
+	
+	@Autowired
 	private List<ValidacaoRegistrarPedido> validacoesRegistroPedido;
 
-	public void registrarPedido(DadosCadastroPedido dados) {
+	public InfoPedido registrarPedido(DadosCadastroPedido dados) {
 
 		validacoesRegistroPedido.forEach(validacao -> validacao.validar(dados));
 
@@ -29,6 +33,7 @@ public class PedidoService {
 		Pedido pedido = new Pedido(itensPedido, dados.getDescricao());
 		pedido = pedidoRepository.save(pedido);
 
+		return pedidoMapper.toInfoPedido(pedido);
 	}
 
 	private List<ItemPedido> obterListaPedido(DadosCadastroPedido dados) {

@@ -33,22 +33,23 @@ public class Pedido {
 	private Long id;
 	private LocalDateTime dataEmissao;
 	private String descricao;
+	private BigDecimal valorTotal;
 	@OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
 	private List<ItemPedido> itensPedido;
-	private BigDecimal valorTotal;
 
 	public Pedido(List<ItemPedido> itens, String descricao) {
 		this.id = null;
 		this.descricao = descricao;
 		this.dataEmissao = LocalDateTime.now();
-		atribuirPedidoEmItens();
+		this.itensPedido = atribuirPedidoEmItens(itens);
 		calcularValorTotalPedido(this.itensPedido);
 	}
 
-	public void atribuirPedidoEmItens() {
-		this.itensPedido.forEach(item -> {
+	public List<ItemPedido> atribuirPedidoEmItens(List<ItemPedido> itens) {
+		itens.forEach(item -> {
 			item.setPedido(this);
 		});
+		return itens;
 	}
 
 	public void calcularValorTotalPedido(List<ItemPedido> itens) {
