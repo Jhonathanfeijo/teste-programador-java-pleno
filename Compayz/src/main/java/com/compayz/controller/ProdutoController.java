@@ -33,8 +33,7 @@ public class ProdutoController {
 
 	@PostMapping
 	@Transactional
-	public ResponseEntity cadastrarProduto(@RequestBody @Valid DadosCadastroProduto dados,
-			UriComponentsBuilder builder) {
+	public ResponseEntity cadastrarProduto(@RequestBody @Valid DadosCadastroProduto dados, UriComponentsBuilder builder) {
 		Produto produto = produtoMapper.toProduto(dados);
 		produto = produtoRepository.save(produto);
 		URI uri = builder.path("/produto/{id}").buildAndExpand(produto.getId()).toUri();

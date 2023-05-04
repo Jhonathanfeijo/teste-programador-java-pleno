@@ -45,7 +45,7 @@ public class ClienteController {
 	@GetMapping("/{id}")
 	public ResponseEntity obterInfoClientePorId(@PathVariable("id") Long id) {
 		Cliente cliente = clienteRepository.getReferenceById(id);
-		InfoCliente infoCliente = ClienteMapper.instance.toInfoCliente(cliente);
+		InfoCliente infoCliente = clienteMapper.toInfoCliente(cliente);
 		return ResponseEntity.ok(infoCliente);
 	}
 

@@ -11,7 +11,7 @@ import com.compayz.domain.pedido.itemPedido.ItemPedido;
 @Mapper(componentModel = "spring")
 public interface PedidoMapper {
 
-	InfoPedido toInfoPedido(Pedido pedido);
+	public InfoPedido toInfoPedido(Pedido pedido);
 
 	public List<InfoItemPedido> toInfoItemPedidoList(List<ItemPedido> itensPedido);
 

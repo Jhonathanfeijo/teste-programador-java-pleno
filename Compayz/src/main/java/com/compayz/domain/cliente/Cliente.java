@@ -28,11 +28,4 @@ public class Cliente {
 	private String telefone;
 	private String email;
 
-//	public Cliente(DadosCadastroCliente dados) {
-//		this.id = null;
-//		this.nome = dados.nome();
-//		this.cpf = dados.cpf();
-//		this.email = dados.email();
-//		this.telefone = dados.telefone();
-//	}
 }

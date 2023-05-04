@@ -7,10 +7,8 @@ import org.mapstruct.factory.Mappers;
 @Mapper(componentModel = "spring")
 public interface ClienteMapper {
 
-	ClienteMapper instance = Mappers.getMapper(ClienteMapper.class);
-
 	@Mapping(target = "id", ignore = true)
-	Cliente toCliente(DadosCadastroCliente dados);
+	public Cliente toCliente(DadosCadastroCliente dados);
 
-	InfoCliente toInfoCliente(Cliente cliente);
+	public InfoCliente toInfoCliente(Cliente cliente);
 }

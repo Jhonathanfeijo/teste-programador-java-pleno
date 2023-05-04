@@ -29,12 +29,6 @@ public class PedidoController {
 	@Autowired
 	private PedidoService pedidoService;
 
-	@Autowired
-	private PedidoRepository pedidoRepository;
-
-	@Autowired
-	private PedidoMapper pedidoMapper;
-
 	@PostMapping
 	@Transactional
 	public ResponseEntity cadastrarPedido(@RequestBody @Valid DadosCadastroPedido dados, UriComponentsBuilder builder) {
@@ -45,8 +39,7 @@ public class PedidoController {
 
 	@GetMapping("/{id}")
 	public ResponseEntity obterInfoPedido(@PathVariable("id") Long id) {
-		Pedido pedido = pedidoRepository.getReferenceById(id);
-		InfoPedido infoPedido = pedidoMapper.toInfoPedido(pedido);
+		InfoPedido infoPedido = pedidoService.obterInfoPedidoPorId(id);
 		return ResponseEntity.ok(infoPedido);
 	}
 }

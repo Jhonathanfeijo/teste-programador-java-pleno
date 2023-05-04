@@ -1,6 +1,6 @@
 package com.compayz.domain.cliente;
 
-import org.hibernate.validator.constraints.br.CPF;
+import org.hibernate.validator.constraints.br.CPF; 
 
 
 import jakarta.validation.constraints.Email;
@@ -11,14 +11,14 @@ import lombok.Setter;
 @Getter
 @Setter
 public class DadosCadastroCliente {
-	@NotBlank
+	@NotBlank(message = "{campo.nome.obrigatorio}")
 	String nome;
-	@NotBlank
-	@CPF
+	@NotBlank(message = "{campo.cpf.obrigatorio}")
+	@CPF(message = "{campo.cpf.invalido}")
 	private String cpf;
-	@NotBlank
+	@NotBlank(message = "{campo.telefone.obrigatorio}")
 	String telefone;
-	@NotBlank
-	@Email
+	@NotBlank(message = "{campo.email.obrigatorio}")
+	@Email(message = "{campo.email.invalido}")
 	private String email;
 }

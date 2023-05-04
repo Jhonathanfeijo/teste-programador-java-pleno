@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.compayz.domain.pedido.itemPedido.ItemPedido;
-import com.compayz.domain.pedido.validacoes.ValidacaoRegistrarPedido;
+import com.compayz.domain.pedido.validacoes.cadastro.ValidacaoRegistrarPedido;
 import com.compayz.domain.produto.Produto;
 import com.compayz.domain.produto.ProdutoRepository;
 
@@ -34,6 +34,12 @@ public class PedidoService {
 		pedido = pedidoRepository.save(pedido);
 
 		return pedidoMapper.toInfoPedido(pedido);
+	}
+	
+	public InfoPedido obterInfoPedidoPorId(Long id) {
+		Pedido pedido = pedidoRepository.getReferenceById(id);
+		InfoPedido infoPedido = pedidoMapper.toInfoPedido(pedido);
+		return infoPedido;
 	}
 
 	private List<ItemPedido> obterListaPedido(DadosCadastroPedido dados) {

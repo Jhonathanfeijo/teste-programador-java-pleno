@@ -5,9 +5,9 @@ import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring")
 public interface ProdutoMapper {
-	
+
 	@Mapping(target = "id", ignore = true)
-	Produto toProduto(DadosCadastroProduto dados);
-	
-	InfoProduto toInfoProduto(Produto produto);
+	public Produto toProduto(DadosCadastroProduto dados);
+
+	public InfoProduto toInfoProduto(Produto produto);
 }

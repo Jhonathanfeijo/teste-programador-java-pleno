@@ -1,4 +1,4 @@
-package com.compayz.domain.pedido.validacoes;
+package com.compayz.domain.pedido.validacoes.cadastro;
 
 import com.compayz.domain.pedido.DadosCadastroPedido;
 

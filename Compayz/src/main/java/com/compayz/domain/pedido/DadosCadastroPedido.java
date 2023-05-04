@@ -15,6 +15,6 @@ public class DadosCadastroPedido {
 
 	private String descricao;
 	@Valid
-	@NotNull
+	@NotNull(message = "{campo.itenspedido.obrigatorio}")
 	private List<DadosCadastroItemPedido> itensPedido;
 }
