@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.compayz.domain.exception.pedido.PedidoNotFoundException;
 import com.compayz.domain.pedido.itemPedido.ItemPedido;
 import com.compayz.domain.pedido.validacoes.cadastro.ValidacaoRegistrarPedido;
 import com.compayz.domain.produto.Produto;
@@ -37,13 +38,12 @@ public class PedidoService {
 	}
 	
 	public InfoPedido obterInfoPedidoPorId(Long id) {
-		Pedido pedido = pedidoRepository.getReferenceById(id);
+		Pedido pedido = pedidoRepository.findById(id).orElseThrow(() -> new PedidoNotFoundException());
 		InfoPedido infoPedido = pedidoMapper.toInfoPedido(pedido);
 		return infoPedido;
 	}
 
 	private List<ItemPedido> obterListaPedido(DadosCadastroPedido dados) {
-
 		return dados.getItensPedido().stream().map(dadosItem -> {
 			Produto produto = produtoRepository.getReferenceById(dadosItem.getIdProduto());
 			produto.descontarEstoque(dadosItem.getQuantidade());

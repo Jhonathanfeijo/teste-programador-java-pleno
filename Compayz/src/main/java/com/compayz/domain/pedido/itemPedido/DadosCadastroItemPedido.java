@@ -9,6 +9,6 @@ public class DadosCadastroItemPedido {
 	@NotNull(message = "{campo.quantidade-itempedido.obrigatorio}")
 	@Min(value = 1)
 	private Integer quantidade;
-	@NotNull(message = "{campo.idproduto-itempedido.obrigatorio}") 
+	@NotNull(message = "{campo.idproduto-itempedido.obrigatorio}")
 	private Long idProduto;
 }

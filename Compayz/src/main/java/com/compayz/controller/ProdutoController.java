@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import com.compayz.domain.exception.produto.ProdutoNotFoundException;
 import com.compayz.domain.produto.DadosCadastroProduto;
 import com.compayz.domain.produto.InfoProduto;
 import com.compayz.domain.produto.Produto;
@@ -43,7 +44,7 @@ public class ProdutoController {
 
 	@GetMapping("/{id}")
 	public ResponseEntity obterInfoProdutoPorId(@PathVariable("id") Long id) {
-		Produto produto = produtoRepository.getReferenceById(id);
+		Produto produto = produtoRepository.findById(id).orElseThrow( () -> new ProdutoNotFoundException( ) );
 		InfoProduto infoProduto = produtoMapper.toInfoProduto(produto);
 		return ResponseEntity.ok(produto);
 	}

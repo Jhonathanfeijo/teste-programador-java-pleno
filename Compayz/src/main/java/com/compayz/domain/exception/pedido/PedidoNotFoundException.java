@@ -1,8 +1,8 @@
-package com.compayz.exception.pedido;
+package com.compayz.domain.exception.pedido;
 
 public class PedidoNotFoundException extends RuntimeException {
 
-	PedidoNotFoundException() {
+	public PedidoNotFoundException() {
 		super("Pedido não encontrado");
 	}
 }

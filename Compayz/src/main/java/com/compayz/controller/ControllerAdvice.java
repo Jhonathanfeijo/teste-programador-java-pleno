@@ -9,9 +9,9 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import com.compayz.exception.pedido.PedidoNotFoundException;
-import com.compayz.exception.produto.ProdutoNotAvailableException;
-import com.compayz.exception.produto.ProdutoNotFoundException;
+import com.compayz.domain.exception.pedido.PedidoNotFoundException;
+import com.compayz.domain.exception.produto.ProdutoNotAvailableException;
+import com.compayz.domain.exception.produto.ProdutoNotFoundException;
 
 @RestControllerAdvice
 public class ControllerAdvice {

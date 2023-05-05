@@ -3,6 +3,8 @@ package com.compayz.domain.pedido.validacoes.cadastro;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.compayz.domain.exception.produto.ProdutoNotAvailableException;
+import com.compayz.domain.exception.produto.ProdutoNotFoundException;
 import com.compayz.domain.pedido.DadosCadastroPedido;
 import com.compayz.domain.produto.Produto;
 import com.compayz.domain.produto.ProdutoRepository;
@@ -16,10 +18,10 @@ public class ValidacaoProdutoDisponivel implements ValidacaoRegistrarPedido {
 	@Override
 	public void validar(DadosCadastroPedido dados) {
 		dados.getItensPedido().forEach(item -> {
-			Produto produto = produtoRepository.getReferenceById(item.getIdProduto());
+			Produto produto = produtoRepository.findById(item.getIdProduto()).orElseThrow( () -> new ProdutoNotFoundException());
 			boolean produtoDisponivel = item.getQuantidade() <= produto.getQuantidade();
 			if (!produtoDisponivel)
-				throw new RuntimeException("Produto não disponível");
+				throw new ProdutoNotAvailableException();
 		});
 	}
 }

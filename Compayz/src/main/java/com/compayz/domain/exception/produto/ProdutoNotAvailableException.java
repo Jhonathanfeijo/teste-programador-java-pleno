@@ -1,8 +1,8 @@
-package com.compayz.exception.produto;
+package com.compayz.domain.exception.produto;
 
 public class ProdutoNotAvailableException extends RuntimeException {
 
-	ProdutoNotAvailableException() {
+	public ProdutoNotAvailableException() {
 		super("Produto não disponível");
 	}
 }

@@ -17,6 +17,7 @@ import com.compayz.domain.cliente.ClienteMapper;
 import com.compayz.domain.cliente.ClienteRepository;
 import com.compayz.domain.cliente.DadosCadastroCliente;
 import com.compayz.domain.cliente.InfoCliente;
+import com.compayz.domain.exception.cliente.ClienteNotFoundException;
 
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
@@ -44,9 +45,8 @@ public class ClienteController {
 
 	@GetMapping("/{id}")
 	public ResponseEntity obterInfoClientePorId(@PathVariable("id") Long id) {
-		Cliente cliente = clienteRepository.getReferenceById(id);
+		Cliente cliente = clienteRepository.findById(id).orElseThrow(() -> new ClienteNotFoundException());
 		InfoCliente infoCliente = clienteMapper.toInfoCliente(cliente);
 		return ResponseEntity.ok(infoCliente);
 	}
-
 }

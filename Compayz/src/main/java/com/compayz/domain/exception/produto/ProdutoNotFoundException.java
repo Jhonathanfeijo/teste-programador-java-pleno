@@ -1,8 +1,8 @@
-package com.compayz.exception.produto;
+package com.compayz.domain.exception.produto;
 
 public class ProdutoNotFoundException extends RuntimeException {
 
-	ProdutoNotFoundException() {
+	public ProdutoNotFoundException() {
 		super("Produto não existe");
 	}
 }
