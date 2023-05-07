@@ -9,6 +9,8 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import com.compayz.domain.exception.cliente.ClienteNotAvailableException;
+import com.compayz.domain.exception.cliente.ClienteNotFoundException;
 import com.compayz.domain.exception.pedido.PedidoNotFoundException;
 import com.compayz.domain.exception.produto.ProdutoNotAvailableException;
 import com.compayz.domain.exception.produto.ProdutoNotFoundException;
@@ -23,21 +25,32 @@ public class ControllerAdvice {
 		String mensagemErro = obterMensagemPadraoValidationException(fieldErrors);
 		return ResponseEntity.badRequest().body(mensagemErro);
 	}
+	
+	@ExceptionHandler(ClienteNotFoundException.class)
+	public ResponseEntity handleClienteNotFoundException(ClienteNotFoundException ex) {
+		return ResponseEntity.notFound().build();
+	}
 
-	@ExceptionHandler(ProdutoNotFoundException.class)
-	public ResponseEntity handleProdutoNotFoundException(ProdutoNotFoundException ex) {
+	@ExceptionHandler(ClienteNotAvailableException.class)
+	public ResponseEntity handleClienteNotAvailableException(ClienteNotAvailableException ex) {
 		return ResponseEntity.badRequest().body(ex.getMessage());
 	}
 
+	@ExceptionHandler(ProdutoNotFoundException.class)
+	public ResponseEntity handleProdutoNotFoundException(ProdutoNotFoundException ex) {
+		return ResponseEntity.notFound().build();
+	}
+
 	@ExceptionHandler(ProdutoNotAvailableException.class)
-	public ResponseEntity handleProdutoNotFoundException(ProdutoNotAvailableException ex) {
+	public ResponseEntity handleProdutoNotAvailableException(ProdutoNotAvailableException ex) {
 		return ResponseEntity.badRequest().body(ex.getMessage());
 	}
 
 	@ExceptionHandler(PedidoNotFoundException.class)
 	public ResponseEntity handlePedidoNotFoundException(PedidoNotFoundException ex) {
-		return ResponseEntity.badRequest().body(ex.getMessage());
+		return ResponseEntity.notFound().build();
 	}
+
 
 	private String obterMensagemPadraoValidationException(List<FieldError> errors) {
 		String mensagemErro = "";

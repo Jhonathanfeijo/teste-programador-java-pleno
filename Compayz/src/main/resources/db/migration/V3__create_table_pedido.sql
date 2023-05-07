@@ -4,4 +4,4 @@ data_emissao datetime not null,
 descricao varchar (250),
 valor_total decimal,
 primary key(id)
-)
+);

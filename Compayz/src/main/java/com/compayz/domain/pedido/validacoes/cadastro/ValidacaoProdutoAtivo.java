@@ -5,15 +5,14 @@ import org.springframework.stereotype.Component;
 
 import com.compayz.domain.exception.produto.ProdutoNotAvailableException;
 import com.compayz.domain.pedido.DadosCadastroPedido;
-import com.compayz.domain.produto.Produto;
 import com.compayz.domain.produto.ProdutoRepository;
 
 @Component
-public class ValidacaoProdutoDisponivel implements ValidacaoRegistrarPedido {
+public class ValidacaoProdutoAtivo implements ValidacaoRegistrarPedido {
 
 	@Autowired
 	private ProdutoRepository produtoRepository;
-
+	
 	@Autowired
 	private ValidacaoProdutoExiste validadorProdutoExiste;
 
@@ -23,9 +22,8 @@ public class ValidacaoProdutoDisponivel implements ValidacaoRegistrarPedido {
 		validadorProdutoExiste.validar(dados);
 
 		dados.getItensPedido().forEach(item -> {
-			Produto produto = produtoRepository.getReferenceById(item.getIdProduto());
-			boolean produtoDisponivel = item.getQuantidade() <= produto.getQuantidade();
-			if (!produtoDisponivel)
+			var produtoAtivo = produtoRepository.getReferenceById(item.getIdProduto()).isAtivo();
+			if (!produtoAtivo)
 				throw new ProdutoNotAvailableException();
 		});
 	}

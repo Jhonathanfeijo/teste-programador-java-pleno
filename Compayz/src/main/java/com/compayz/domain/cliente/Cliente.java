@@ -5,19 +5,11 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.Data;
 
 @Entity(name = "Cliente")
 @Table(name = "cliente")
-@EqualsAndHashCode(of = "id")
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
-@Setter
+@Data
 public class Cliente {
 
 	@Id
@@ -27,5 +19,26 @@ public class Cliente {
 	private String cpf;
 	private String telefone;
 	private String email;
+	private boolean ativo;
+	
+	public Cliente() {
+		this.ativo = true;
+	}
 
+	public void atualizar(DadosAtualizacaoCliente dados) {
+		if (dados.getNome() != null)
+			this.nome = dados.getNome();
+		if (dados.getEmail() != null)
+			this.email = dados.getEmail();
+		if (dados.getTelefone() != null)
+			this.telefone = dados.getTelefone();
+	}
+	
+	public void desativar() {
+		this.ativo = false;
+	}
+	
+	public void  ativar() {
+		this.ativo = true;
+	}
 }

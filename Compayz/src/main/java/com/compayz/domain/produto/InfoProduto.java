@@ -10,5 +10,5 @@ public class InfoProduto{
 
 	private String descricao;
 	private BigDecimal valor;
-	private Long quantidade;
+	private Integer quantidade;
 }
