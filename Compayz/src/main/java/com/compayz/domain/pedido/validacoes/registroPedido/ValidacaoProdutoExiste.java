@@ -1,4 +1,4 @@
-package com.compayz.domain.pedido.validacoes.cadastro;
+package com.compayz.domain.pedido.validacoes.registroPedido;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

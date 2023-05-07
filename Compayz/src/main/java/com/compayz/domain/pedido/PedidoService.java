@@ -10,7 +10,7 @@ import com.compayz.domain.cliente.Cliente;
 import com.compayz.domain.cliente.ClienteRepository;
 import com.compayz.domain.exception.pedido.PedidoNotFoundException;
 import com.compayz.domain.pedido.itemPedido.ItemPedido;
-import com.compayz.domain.pedido.validacoes.cadastro.ValidacaoRegistrarPedido;
+import com.compayz.domain.pedido.validacoes.registroPedido.ValidacaoRegistrarPedido;
 import com.compayz.domain.produto.Produto;
 import com.compayz.domain.produto.ProdutoRepository;
 
@@ -54,10 +54,8 @@ public class PedidoService {
 	private List<ItemPedido> obterListaPedido(DadosCadastroPedido dados) {
 		return dados.getItensPedido().stream().map(dadosItem -> {
 			Produto produto = produtoRepository.getReferenceById(dadosItem.getIdProduto());
-			produto.descontarEstoque(dadosItem.getQuantidade());
 			ItemPedido itemPedido = new ItemPedido(produto, dadosItem.getQuantidade());
 			return itemPedido;
-
 		}).toList();
 	}
 }
