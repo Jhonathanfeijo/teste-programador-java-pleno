@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -18,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import com.compayz.domain.cliente.InfoCliente;
 import com.compayz.domain.exception.produto.ProdutoNotFoundException;
 import com.compayz.domain.produto.DadosAtualizacaoProduto;
 import com.compayz.domain.produto.DadosCadastroProduto;
@@ -31,6 +31,7 @@ import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 
 @RestController
+@CrossOrigin(value = "*")
 @RequestMapping("/produto")
 public class ProdutoController {
 
@@ -65,7 +66,7 @@ public class ProdutoController {
 		Page<InfoProduto> pagina = produtoRepository.findAllByAtivoTrue(paginacao).map(produto -> {
 			return produtoMapper.toInfoProduto(produto);
 		});
-		return ResponseEntity.ok(pagina);
+		return ResponseEntity.ok().body(pagina);
 	}
 
 	@PutMapping("/{id}")
