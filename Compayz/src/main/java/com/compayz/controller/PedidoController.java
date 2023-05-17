@@ -40,7 +40,7 @@ public class PedidoController {
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity obterInfoPedido(@PathVariable("id") Long id) {
+	public ResponseEntity obterInfoPedido(@PathVariable Long id) {
 		InfoPedido infoPedido = pedidoService.obterInfoPedidoPorId(id);
 		return ResponseEntity.ok(infoPedido);
 	}

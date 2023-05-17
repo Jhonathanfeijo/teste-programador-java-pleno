@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Krona+One&family=Montserrat:wght@600&display=swap');
+
+*{
+    padding: 0;
+    margin: 0;
+}
+
+:root{
+    --cor-primaria:#110066;
+    --cor-secundaria: #FFFFFF;
+}
+
+body{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image:url("../image/markd.jpg");
+}
+.div_formulario{
+
+    height: 72%;
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 10px;
+    border: 0px solid #023059;
+    border-right: 1px solid #08428C;
+}
+.formulario{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 15%; 
+    height: 70%;
+
+}
+.campo_text_formulario{
+    width: 80%;
+    height: 20%;
+    display: flex;
+    flex-direction: column;
+    gap: 7px 0;
+}
+.input_text_formulario{
+    background-color: #FFFFFF;
+    width: 23rem;
+    height: 40px;
+    border:  1px solid #FFFFFF;
+    border-radius: 4px;
+    font-family: 'Montserrat', sans-serif;
+    text-align: 0 5px;
+    padding: 0 7px;
+
+}
+.label_formulario{
+    color: #FFFFFF;
+    text-align: left;
+    font-family: 'Montserrat', sans-serif;
+    
+}
+.botao_formulario{
+    background-color: #FFFFFF;
+    width: 80%;
+    padding:15px 0;
+    margin-top: 8%;
+    border: 1px solid #FFFFFF;
+    border-radius: 4px;
+    color: #110066;
+    font-family: 'Montserrat', sans-serif;
+}
+.titulo_formulario{
+    margin-top: 12%;    
+    color: #FFFFFF;
+    font-family: 'Montserrat', sans-serif;
+
+   
+}
+.botao_formulario:hover{
+    background-color: #919191;
+    color: #FFFFFF;
+    border: 1px solid #919191;
+    color: #FFFFFF;
+}
+
+.controle_quantidade_produto{
+    width: 2rem;
+    height: 2rem;
+}
+
+.campo_quantidade_formulario{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 80%;
+    margin: 7%;
+}

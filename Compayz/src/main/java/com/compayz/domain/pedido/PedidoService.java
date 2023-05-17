@@ -36,8 +36,7 @@ public class PedidoService {
 
 		validacoesRegistroPedido.forEach(validacao -> validacao.validar(dados));
 
-
-		List<ItemPedido> itensPedido = obterListaPedido(dados);
+		List<ItemPedido> itensPedido = atribuirProdutosEmPedido(dados);
 		Cliente cliente = clienteRepository.findById(dados.getIdCliente()).get();
 		Pedido pedido = new Pedido(null, cliente, dados.getDescricao(), itensPedido, null, LocalDateTime.now());
 		pedido = pedidoRepository.save(pedido);
@@ -51,9 +50,10 @@ public class PedidoService {
 		return infoPedido;
 	}
 
-	private List<ItemPedido> obterListaPedido(DadosCadastroPedido dados) {
+	private List<ItemPedido> atribuirProdutosEmPedido(DadosCadastroPedido dados) {
 		return dados.getItensPedido().stream().map(dadosItem -> {
 			Produto produto = produtoRepository.getReferenceById(dadosItem.getIdProduto());
+			produto.descontarEstoque(dadosItem.getQuantidade());
 			ItemPedido itemPedido = new ItemPedido(produto, dadosItem.getQuantidade());
 			return itemPedido;
 		}).toList();

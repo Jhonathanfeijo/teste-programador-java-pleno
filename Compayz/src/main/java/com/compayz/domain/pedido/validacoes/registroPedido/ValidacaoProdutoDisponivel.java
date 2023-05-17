@@ -27,7 +27,6 @@ public class ValidacaoProdutoDisponivel implements ValidacaoRegistrarPedido {
 			boolean produtoDisponivel = item.getQuantidade() <= produto.getQuantidade();
 			if (!produtoDisponivel)
 				throw new ProdutoNotAvailableException();
-			produto.descontarEstoque(item.getQuantidade());
 		});
 	}
 }

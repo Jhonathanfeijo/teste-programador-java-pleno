@@ -2,6 +2,8 @@ package com.compayz.domain.produto;
 
 import java.math.BigDecimal;
 
+import com.compayz.domain.exception.produto.ProdutoNotAvailableException;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -37,6 +39,9 @@ public class Produto {
 
 	public void descontarEstoque(Integer quantidade) {
 		this.quantidade -= quantidade;
+		if(this.quantidade < 0) {
+			throw new ProdutoNotAvailableException();
+		}
 	}
 
 	public void adicionarEstoque(Integer quantidade) {
