@@ -24,9 +24,9 @@ function cadastrar() {
     })
   }).then(res => {
     if (res.status === 201)
-      console.log('Cliente cadastrado');
+      alert('Cliente cadastrado');
     if(res.status === 400)
-      console.log('Não foi possível cadastrar cliente')
+      alert('Não foi possível cadastrar cliente')
   })
 };
 
