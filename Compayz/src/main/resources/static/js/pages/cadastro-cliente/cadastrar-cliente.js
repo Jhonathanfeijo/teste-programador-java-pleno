@@ -23,9 +23,11 @@ function cadastrar() {
       email: emailForm.value
     })
   }).then(res => {
-    if (res.status === 201)
+    if (res.status === 201) {
       alert('Cliente cadastrado');
-    if(res.status === 400)
+      formulario.reset();
+    }
+    else
       alert('Não foi possível cadastrar cliente')
   })
 };

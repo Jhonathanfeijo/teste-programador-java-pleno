@@ -27,8 +27,8 @@ export function finalizarPedido(produtos) {
     }
     ).then(res => {
         if (res.status === 201)
-            console.log('Pedido realizado')
-        if(res.status === 400)
-            console.log('Não foi possível realizar o pedido')
+            alert('Pedido realizado')
+        else
+            alert('Não foi possível realizar o pedido')
     })
 }

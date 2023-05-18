@@ -5,7 +5,7 @@ export function criarFormularioProduto() {
     formulario.classList.add('formulario');
 
     var descricao = criarCampoDados('Descrição', 'campo_descricao', 'text');
-    var valor = criarCampoDados('Valor', 'campo_valor', 'number');
+    var valor = criarCampoDados('Valor', 'campo_valor', 'text');
     var quantidade = criarCampoDados('Quantidade', 'campo_quantidade', 'number');
 
     var valorInput = valor.querySelector('.input_dados');
@@ -61,7 +61,7 @@ function enviarProduto(event) {
     var descricao = document.querySelector('#campo_descricao');
 
     fetch('http://localhost:8080/produto', {
-        headers:{
+        headers: {
             'Content-Type': 'application/json'
         },
         method: 'POST',
@@ -71,9 +71,11 @@ function enviarProduto(event) {
             valor: valor.value
         })
     }).then(res => {
-        if(res.status === 201)
-            console.log('Produto cadastrado')
-        if(res.status === 400)
-            console.log('Não foi possível cadastrar o produto')
+        if (res.status === 201) {
+            alert('Produto cadastrado')
+            formulario.reset();
+        }
+        else
+            alert('Não foi possível cadastrar o produto')
     })
 }
