@@ -2,7 +2,7 @@ import { obterProdutos } from './buscar-produtos.js';
 import { criarTabelaProdutos } from './tabela-produto.js'
 import { finalizarPedido } from './finalizar-pedido.js'
 
-export function adicionarInteraçoesTabela(tabela, valorPedido, botao) {
+export function adicionarInteraçoesTabela(tabela, botao) {
 
     obterProdutos().then(produtos => {
         tabela = criarTabelaProdutos(produtos, tabela)
@@ -41,16 +41,16 @@ function calcularPedido(linhas) {
     linhas.forEach(linha => {
         var quantidade = linha.querySelector('#quantidade');
         var valor = linha.querySelector('#valor');
-        valorPedido += parseFloat(quantidade.textContent) * parseFloat(valor.textContent);
+        valorPedido += parseFloat(quantidade.textContent) * parseFloat(valor.textContent)
     })
-    return valorPedido;
+    return valorPedido.toFixed(2);
 }
 
 function ListenerClicarBotao(botao, linhasProduto) {
     botao.addEventListener('click', () => finalizarPedido(linhasProduto));
 }
 
-export function gerarCampoIdCliente() {
+export function gerarCampo(textContent, id) {
 
     var div = document.createElement('div');
     var input = document.createElement('input');
@@ -58,9 +58,9 @@ export function gerarCampoIdCliente() {
 
     div.classList.add('field_dados');
     input.classList.add('input_dados');
-    input.id = "id_cliente"
+    input.id = id
     label.classList.add('label_dados');
-    label.textContent = 'ID cliente'
+    label.textContent = textContent
     div.appendChild(label);
     div.appendChild(input);
     return div;

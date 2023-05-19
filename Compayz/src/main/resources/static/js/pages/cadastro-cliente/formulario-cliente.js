@@ -43,6 +43,7 @@ function criarCampoDados(textContent, dadoCliente) {
     input.classList.add('input_dados');
     input.setAttribute('id', dadoCliente);
     input.setAttribute('name', dadoCliente);
+    input.setAttribute('required', 'true');
 
     div.appendChild(label);
     div.appendChild(input);

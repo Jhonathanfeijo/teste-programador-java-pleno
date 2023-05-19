@@ -1,56 +1,79 @@
-import { criarFormularioCliente } from "./formulario-cliente.js";
-const url = "http://localhost:8080/cliente"
-
-var formulario = criarFormularioCliente();
-var nomeForm = formulario.querySelector('#nome');
-var cpfForm = formulario.querySelector('#cpf');
-var telefoneForm = formulario.querySelector('#telefone');
-var emailForm = formulario.querySelector('#email');
-
-function cadastrar() {
-
-  fetch("http://localhost:8080/cliente", {
-
-    headers: {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json'
-    }
-    , method: "POST",
-    body: JSON.stringify({
-      nome: nomeForm.value,
-      cpf: cpfForm.value,
-      telefone: telefoneForm.value,
-      email: emailForm.value
-    })
-  }).then(res => {
-    if (res.status === 201) {
-      alert('Cliente cadastrado');
-      formulario.reset();
-    }
-    else
-      alert('Não foi possível cadastrar cliente')
-  })
-};
 
 
-export function obterFormularioCliente() {
+export function criarFormularioCliente() {
+    var formulario = document.createElement('form');
+    formulario.classList.add('formulario');
 
-  $(document).ready(function () {
-    $("#telefone").inputmask({
-      mask: "(99) 99999-9999",
-      keepStatic: true
-    });
-  });
+    var nomeCliente = criarCampoDados('Nome', 'nome');
+    var cpf = criarCampoDados('CPF', 'cpf');
+    var email = criarCampoDados('E-mail', 'email');
+    var telefone = criarCampoDados('Telefone', 'telefone');
 
-  $(document).ready(function () {
-    $("#cpf").inputmask({
-      mask: "999.999.999-99",
-      keepStatic: true
-    });
-  });
-  formulario.addEventListener("submit", function (event) {
+    formulario.appendChild(nomeCliente);
+    formulario.appendChild(cpf);
+    formulario.appendChild(email);
+    formulario.appendChild(telefone);
+    formulario.appendChild(criarBotao());
+
+    formulario.addEventListener('submit', enviarCliente);
+    return formulario;
+}
+
+function criarBotao() {
+    var botao = document.createElement('button');
+    botao.classList.add('botao_formulario');
+    botao.textContent = 'Enviar';
+
+    return botao;
+}
+
+function criarCampoDados(textContent, dadoProduto) {
+    var div = document.createElement('div');
+    var label = document.createElement('label');
+    var input = document.createElement('input');
+
+    div.classList.add('field_dados');
+
+    label.classList.add('label_dados');
+    label.setAttribute('for', dadoProduto);
+    label.textContent = textContent;
+
+    input.classList.add('input_dados');
+    input.setAttribute('id', dadoProduto);
+    input.setAttribute('name', dadoProduto);
+    input.setAttribute('required', 'true')
+
+    div.appendChild(label);
+    div.appendChild(input);
+
+    return div;
+}
+
+function enviarCliente(event) {
     event.preventDefault();
-    cadastrar()
-  })
-  return formulario;
+
+    var nome = document.querySelector('#nome');
+    var cpf = document.querySelector('#cpf');
+    var email = document.querySelector('#email');
+    var telefone = document.querySelector('#telefone');
+
+    fetch('http://localhost:8080/cliente', {
+        headers: {
+            'Content-Type':'application/json'
+        },
+        method: 'POST',
+        body: JSON.stringify({
+            nome: nome.value,
+            cpf: cpf.value,
+            email: email.value,
+            telefone: telefone.value
+        })
+    }).then(res => {
+        if (res.status === 201) {
+            alert('Cliente cadastrado')
+            formulario.reset();
+        }
+        else
+            alert('Não foi possível cadastrar o cliente')
+    })
 }
