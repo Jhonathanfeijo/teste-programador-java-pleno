@@ -46,6 +46,7 @@ function criarCampoDados(textContent, dadoProduto, type) {
     input.setAttribute('id', dadoProduto);
     input.setAttribute('name', dadoProduto);
     input.setAttribute('type', type);
+    input.setAttribute('required', 'true');
 
     div.appendChild(label);
     div.appendChild(input);

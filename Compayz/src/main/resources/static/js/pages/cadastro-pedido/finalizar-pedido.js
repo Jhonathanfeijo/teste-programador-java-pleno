@@ -8,20 +8,19 @@ export function finalizarPedido(produtos) {
 
         var quantidadeProduto = produto.querySelector('#quantidade');
         var id = produto.querySelector('#id');
-        var dadosItem = {
-            idProduto: parseInt(id.textContent), quantidade: parseInt(quantidadeProduto.textContent)
-        }
         if (parseInt(quantidadeProduto.textContent) > 0)
             itensPedido.push({ idProduto: parseInt(id.textContent), quantidade: parseInt(quantidadeProduto.textContent) });
 
     })
     const idCliente = document.querySelector('#id_cliente');
+    const descricaoPedido = document.querySelector('#descricao_pedido');
 
     fetch('http://localhost:8080/pedido', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
             idCliente: parseInt(idCliente.value),
+            descricao : descricaoPedido.value,
             itensPedido: itensPedido
         })
     }
