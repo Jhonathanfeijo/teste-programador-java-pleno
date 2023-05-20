@@ -15,6 +15,20 @@ export function criarFormularioCliente() {
     formulario.appendChild(telefone);
     formulario.appendChild(criarBotao());
 
+    $(document).ready(function () {
+        $("#telefone").inputmask({
+          mask: "(99) 99999-9999",
+          keepStatic: true
+        });
+      });
+    
+      $(document).ready(function () {
+        $("#cpf").inputmask({
+          mask: "999.999.999-99",
+          keepStatic: true
+        });
+      });
+
     formulario.addEventListener('submit', enviarCliente);
     return formulario;
 }
@@ -52,6 +66,7 @@ function criarCampoDados(textContent, dadoProduto) {
 function enviarCliente(event) {
     event.preventDefault();
 
+    var formulario = document.querySelector('.formulario')
     var nome = document.querySelector('#nome');
     var cpf = document.querySelector('#cpf');
     var email = document.querySelector('#email');

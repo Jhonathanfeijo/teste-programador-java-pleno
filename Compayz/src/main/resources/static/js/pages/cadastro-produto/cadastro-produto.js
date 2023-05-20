@@ -56,10 +56,11 @@ function criarCampoDados(textContent, dadoProduto, type) {
 
 function enviarProduto(event) {
     event.preventDefault();
-
+    var formulario = document.querySelector('.formulario');
     var valor = document.querySelector('#campo_valor');
     var quantidade = document.querySelector('#campo_quantidade');
     var descricao = document.querySelector('#campo_descricao');
+    console.log(valor.value);
 
     fetch('http://localhost:8080/produto', {
         headers: {
@@ -68,15 +69,15 @@ function enviarProduto(event) {
         method: 'POST',
         body: JSON.stringify({
             descricao: descricao.value,
-            quantidade: quantidade.value,
-            valor: valor.value
+            quantidade: parseInt(quantidade.value),
+            valor: parseFloat(valor.value).toFixed(2)
         })
     }).then(res => {
         if (res.status === 201) {
-            alert('Produto cadastrado')
+            alert('Produto cadastrado');
             formulario.reset();
+        } else {
+            alert('Não foi possível cadastrar o produto');
         }
-        else
-            alert('Não foi possível cadastrar o produto')
-    })
+    });
 }
