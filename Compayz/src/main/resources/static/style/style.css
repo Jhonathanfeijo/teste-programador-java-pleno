@@ -21,11 +21,22 @@ body {
     color: var(--cor-secundaria);
     display: flex;
     flex-direction: column;
+    justify-content: baseline;
     align-items: center;
+    width: 100vw;
 }
 
 p{
-    max-width: 34rem;
+    max-width: 50rem;
+}
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: baseline;
+    align-items: center;
+    font-family: var(--font-primaria);
+    font-weight: 500;
+    width: 100%;
 }
 
 header{
@@ -34,31 +45,30 @@ header{
     align-items: center;
     font-family: var(--font-primaria);
     color: var(--cor-secundaria);
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 500;
-    gap: 2rem;
-    padding: 1rem 0;
-    
+    gap: 3rem;
+    padding: 2rem 0;
+    margin: 0 5rem;
+    align-self: baseline;
 }
-.container{
+
+.menu{
     display: flex;
-    text-align: justify;
+    width: auto;
+    display: flex;
     flex-direction: column;
     justify-content: baseline;
     align-items: baseline;
-    font-family: var(--font-primaria);
-    font-weight: 500;
-    
-
 }
+
 .conteudo {
     display: flex;
     text-align: justify;
     flex-direction: column;
-    justify-content: baseline;
+    justify-content: center;
     align-items: baseline;
-    gap: 1rem;
-    width: 33rem;
+    gap: 0.5rem;
 }
 
 .header_option{
@@ -71,16 +81,31 @@ header{
 .coluna, .coluna_interador {
     color: var(--cor-secundaria);
     text-align: center;
-    width: 9rem;
-    
+    padding: 0 5px;
+    min-width: 7rem;
+
+}
+
+.botao_tabela{
+    height: auto;
+    padding: 10px 25px;
+    background: var(--cor-secundaria);
+    color: var(--cor-primaria);
+    border-radius: 5px;
+}
+
+.botao_tabela:hover{
+    background-color: var(--cor-terciaria);
+    color: var(--cor-secundaria);
 }
 
 .tabela{
     border: 1px solid var(--cor-secundaria);
     border-radius: 5px;
+    font-size: 17px;
 }
 
-.produto, .cabecalho_produtos{
+.produto, .cabecalho_produtos, .linha {
     height: 4rem;
 }
 
@@ -88,7 +113,7 @@ header{
     margin: 2rem 0;
     color: var(--cor-secundaria);
     font-family: 'Montserrat', sans-serif;
-    align-self: baseline;
+
 }
 
 .field_dados {
@@ -203,5 +228,16 @@ header{
     width: 27rem;
     height: 35rem;
     gap: 1rem;
+}
+
+#botao_cadastrar_cliente, #botao_cadastrar_produto{
+    width: 11rem;
+    align-self: flex-end;
+    text-decoration: none;
+    font-family: var(--font-primaria);
+    text-align: center;
+    height: auto;
+    padding: 0.7rem;
+    
 }
 

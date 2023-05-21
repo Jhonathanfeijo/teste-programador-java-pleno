@@ -17,17 +17,17 @@ export function criarFormularioCliente() {
 
     $(document).ready(function () {
         $("#telefone").inputmask({
-          mask: "(99) 99999-9999",
-          keepStatic: true
+            mask: "(99) 99999-9999",
+            keepStatic: true
         });
-      });
-    
-      $(document).ready(function () {
+    });
+
+    $(document).ready(function () {
         $("#cpf").inputmask({
-          mask: "999.999.999-99",
-          keepStatic: true
+            mask: "999.999.999-99",
+            keepStatic: true
         });
-      });
+    });
 
     formulario.addEventListener('submit', enviarCliente);
     return formulario;
@@ -74,7 +74,7 @@ function enviarCliente(event) {
 
     fetch('http://localhost:8080/cliente', {
         headers: {
-            'Content-Type':'application/json'
+            'Content-Type': 'application/json'
         },
         method: 'POST',
         body: JSON.stringify({
@@ -87,6 +87,7 @@ function enviarCliente(event) {
         if (res.status === 201) {
             alert('Cliente cadastrado')
             formulario.reset();
+            window.location.href = '/#clientes'
         }
         else
             alert('Não foi possível cadastrar o cliente')

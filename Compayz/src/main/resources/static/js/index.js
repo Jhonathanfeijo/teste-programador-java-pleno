@@ -1,7 +1,10 @@
-import home from './pages/index/index.js'
+import home from './pages/index/index.js';
 import { adicionarInteraçoesTabela, gerarCampo } from './pages/cadastro-pedido/cadastrar-pedido.js';
 import { criarFormularioProduto } from './pages/cadastro-produto/cadastro-produto.js';
-import {criarFormularioCliente} from './pages/cadastro-cliente/cadastrar-cliente.js'
+import {criarFormularioCliente} from './pages/cadastro-cliente/cadastrar-cliente.js';
+import { criarConteudoListagemClientes, criarBotaoCadastrarCliente } from './pages/clientes/listar-clientes.js';
+import { criarConteudoListagemProdutos, criarBotaoCadastrarProduto } from './pages/produtos/listar-produtos.js';
+
 var titulo = document.querySelector('.titulo');
 var conteudo = document.querySelector('.conteudo');
 
@@ -16,6 +19,16 @@ const init = () => {
                 titulo.textContent = 'Compay Z'
                 break;
 
+                case '#clientes':
+                    titulo.textContent = 'Clientes'
+                    conteudo.appendChild(criarBotaoCadastrarCliente());
+                    conteudo.appendChild(criarConteudoListagemClientes());
+                break;
+                case '#produtos':
+                    titulo.textContent = 'Produtos'
+                    conteudo.appendChild(criarBotaoCadastrarProduto());
+                    conteudo.appendChild(criarConteudoListagemProdutos());
+                break;
             case '#cadastrar_produto': 
                 var formulario = criarFormularioProduto();
                 conteudo.appendChild(formulario);

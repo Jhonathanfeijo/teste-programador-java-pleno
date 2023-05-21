@@ -76,6 +76,7 @@ function enviarProduto(event) {
         if (res.status === 201) {
             alert('Produto cadastrado');
             formulario.reset();
+            window.location.href = '/#produtos'
         } else {
             alert('Não foi possível cadastrar o produto');
         }
