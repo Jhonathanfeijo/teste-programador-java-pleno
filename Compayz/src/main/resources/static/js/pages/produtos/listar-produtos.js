@@ -1,9 +1,10 @@
 import { criarTd, criarTr } from "../../tabela.js";
+import { deletarProduto } from "./deletar-produtos.js";
 
 async function obterProdutos() {
     return await fetch('http://localhost:8080/produto').then(
         res => res.json()
-    ).then(produtos =>  produtos.content).catch(error => console.log(error))
+    ).then(produtos => produtos.content).catch(error => console.log(error))
 }
 
 
@@ -13,10 +14,10 @@ function criarTabelaProdutos() {
 
     var tr = criarTr('linha');
 
-    tr.appendChild( criarTd('Código', 'coluna', 'codigo_cabecalho'));
-    tr.appendChild( criarTd('Descrição', 'coluna', 'descricao_cabecalho'));
-    tr.appendChild( criarTd('Quantidade em estoque', 'coluna', 'quantidade_estoque_cabecalho'));
-    tr.appendChild( criarTd('Valor', 'coluna', 'valor_cabecalho'));
+    tr.appendChild(criarTd('Código', 'coluna', 'codigo_cabecalho'));
+    tr.appendChild(criarTd('Descrição', 'coluna', 'descricao_cabecalho'));
+    tr.appendChild(criarTd('Quantidade em estoque', 'coluna', 'quantidade_estoque_cabecalho'));
+    tr.appendChild(criarTd('Valor', 'coluna', 'valor_cabecalho'));
 
     tabela.appendChild(tr);
 
@@ -27,11 +28,15 @@ function adicionarProduto(produto) {
 
     var trProduto = criarTr('linha')
 
-    var tdBotaoAlterar = criarTd('','coluna','alterar');
-    tdBotaoAlterar.appendChild(criarBotaoModificadorProduto(produto.id, 'alterar'))
+    var tdBotaoAlterar = criarTd('', 'coluna', 'alterar');
+    tdBotaoAlterar.appendChild(criarBotaoModificadorProduto(produto.id, 'Alterar'))
 
-    var tdBotaoExcluir = criarTd('','coluna','excluir');
-    tdBotaoExcluir.appendChild(criarBotaoModificadorProduto(produto.id, 'excluir'));
+    var tdBotaoExcluir = criarTd('', 'coluna', 'excluir');
+    var botaoExcluir = criarBotaoModificadorProduto(produto.id, 'Excluir');
+    tdBotaoExcluir.appendChild(botaoExcluir);
+    botaoExcluir.addEventListener('click', () => {
+        deletarProduto(botaoExcluir);
+    })
 
     trProduto.appendChild(criarTd(produto.id, 'coluna', 'codigo_produto'));
     trProduto.appendChild(criarTd(produto.descricao, 'coluna', 'descricao_produto'));
@@ -69,7 +74,7 @@ export function criarConteudoListagemProdutos() {
     return tabela;
 }
 
-export function criarBotaoCadastrarProduto(){
+export function criarBotaoCadastrarProduto() {
     var botao = document.createElement('a');
     botao.classList.add('botao_formulario');
     botao.textContent = 'Cadastrar produto'
