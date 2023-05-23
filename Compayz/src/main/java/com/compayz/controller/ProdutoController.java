@@ -62,7 +62,7 @@ public class ProdutoController {
 	}
 
 	@GetMapping
-	public ResponseEntity<Page<InfoProduto>> obterProdutos(@PageableDefault(size = 10) Pageable paginacao) {
+	public ResponseEntity<Page<InfoProduto>> obterProdutos(@PageableDefault Pageable paginacao) {
 		Page<InfoProduto> pagina = produtoRepository.findAllByAtivoTrue(paginacao).map(produto -> {
 			return produtoMapper.toInfoProduto(produto);
 		});

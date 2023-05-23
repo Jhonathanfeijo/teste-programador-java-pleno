@@ -87,9 +87,9 @@ public class ClienteController {
 		InfoCliente infoCliente = clienteMapper.toInfoCliente(cliente);
 		return ResponseEntity.ok(infoCliente);
 	}
-	
+
 	@GetMapping
-	public ResponseEntity<Page<InfoCliente>> obterClientes(@PageableDefault(size = 10) Pageable paginacao) {
+	public ResponseEntity<Page<InfoCliente>> obterClientes(@PageableDefault Pageable paginacao) {
 		Page<InfoCliente> pagina = clienteRepository.findAllByAtivoTrue(paginacao).map(cliente -> {
 			return clienteMapper.toInfoCliente(cliente);
 		});

@@ -1,7 +1,7 @@
 import home from './pages/index/index.js';
 import { adicionarInteraçoesTabela, gerarCampo } from './pages/cadastro-pedido/cadastrar-pedido.js';
-import { criarFormularioProduto } from './pages/cadastro-produto/cadastro-produto.js';
-import {criarFormularioCliente} from './pages/cadastro-cliente/cadastrar-cliente.js';
+import { criarFormularioProduto } from './pages/produtos/cadastro-produto.js';
+import {criarFormularioCliente} from './pages/clientes/cadastrar-cliente.js';
 import { criarConteudoListagemClientes, criarBotaoCadastrarCliente } from './pages/clientes/listar-clientes.js';
 import { criarConteudoListagemProdutos, criarBotaoCadastrarProduto } from './pages/produtos/listar-produtos.js';
 
@@ -52,7 +52,7 @@ const init = () => {
 
                 var valorTotal = document.createElement('p');
                 valorTotal.classList.add('valor_total')
-                valorTotal.textContent = 'Valor total: R$ 00.00'
+                valorTotal.textContent = 'Valor total: R$ 0.00'
 
                 var campoCliente = gerarCampo('Código do cliente','id_cliente')
                 var campoDescricaoPedido = gerarCampo('Descrição do pedido','descricao_pedido')
