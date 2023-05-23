@@ -32,6 +32,7 @@ function adicionarCliente(cliente) {
     var tdBotaoAlterar = criarTd('', 'coluna', 'alterar');
     tdBotaoAlterar.appendChild(criarBotaoModificadorCliente(cliente.id, 'Alterar'))
 
+
     
     var tdBotaoExcluir = criarTd('', 'coluna', 'excluir');
     var botaoExcluir = criarBotaoModificadorCliente(cliente.id, 'Excluir')
