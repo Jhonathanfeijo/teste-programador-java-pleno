@@ -14,7 +14,7 @@ import lombok.Setter;
 @Getter
 public class DadosCadastroPedido {
 	
-	@NotNull
+	@NotNull(message = "{campo.codigo-cliente.obrigatorio}")
 	private Long idCliente;
 	
 	private String descricao;

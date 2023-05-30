@@ -1,6 +1,7 @@
 package com.compayz.controller;
 
 import java.net.URI;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -25,6 +26,7 @@ import com.compayz.domain.cliente.ClienteRepository;
 import com.compayz.domain.cliente.DadosAtualizacaoCliente;
 import com.compayz.domain.cliente.DadosCadastroCliente;
 import com.compayz.domain.cliente.InfoCliente;
+import com.compayz.domain.cliente.validacao.ValidacaoCadastroCliente;
 import com.compayz.domain.exception.cliente.ClienteNotFoundException;
 
 import jakarta.transaction.Transactional;
@@ -40,11 +42,17 @@ public class ClienteController {
 
 	@Autowired
 	private ClienteMapper clienteMapper;
+	
+	@Autowired
+	private List<ValidacaoCadastroCliente> validacao;
 
 	@PostMapping
 	@Transactional
 	public ResponseEntity cadastrarCliente(@RequestBody @Valid DadosCadastroCliente dados,
 			UriComponentsBuilder builder) {
+		
+		validacao.forEach(v -> v.validar(dados));
+		
 		Cliente cliente = clienteMapper.toCliente(dados);
 		cliente = clienteRepository.save(cliente);
 

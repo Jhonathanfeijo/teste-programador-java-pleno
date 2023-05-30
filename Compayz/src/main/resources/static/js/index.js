@@ -1,10 +1,8 @@
-import home from './pages/index/index.js';
-import { adicionarInteraçoesTabela, gerarCampo } from './pages/cadastro-pedido/cadastrar-pedido.js';
-import { criarFormularioProduto } from './pages/produtos/cadastro-produto.js';
-import {criarFormularioCliente} from './pages/clientes/cadastrar-cliente.js';
-import { criarConteudoListagemClientes, criarBotaoCadastrarCliente } from './pages/clientes/listar-clientes.js';
-import { criarConteudoListagemProdutos, criarBotaoCadastrarProduto } from './pages/produtos/listar-produtos.js';
 
+import { criarDivListagemClientes } from "./clientes/listar-clientes.js";
+import { criarDivListagemProdutos } from "./produtos/listar-produtos.js";
+import { criarDivCadastroPedido } from "./pedido/cadastrar-pedido.js";
+import { subtituloCompayz } from "./compayz/compayz.js";
 var titulo = document.querySelector('.titulo');
 var conteudo = document.querySelector('.conteudo');
 
@@ -15,66 +13,37 @@ const init = () => {
 
         switch (window.location.hash) {
             case '':
-                conteudo.appendChild(home());
+                conteudo.appendChild(subtituloCompayz());
                 titulo.textContent = 'Compay Z'
                 break;
 
-                case '#clientes':
-                    titulo.textContent = 'Clientes'
-                    conteudo.appendChild(criarBotaoCadastrarCliente());
-                    conteudo.appendChild(criarConteudoListagemClientes());
+            case '#clientes':
+                titulo.textContent = 'Clientes'
+                conteudo.appendChild(criarDivListagemClientes())
                 break;
-                case '#produtos':
-                    titulo.textContent = 'Produtos'
-                    conteudo.appendChild(criarBotaoCadastrarProduto());
-                    conteudo.appendChild(criarConteudoListagemProdutos());
+            case '#produtos':
+                titulo.textContent = 'Produtos'
+                conteudo.appendChild(criarDivListagemProdutos())
                 break;
-            case '#cadastrar_produto': 
-                var formulario = criarFormularioProduto();
-                conteudo.appendChild(formulario);
-                titulo.textContent = 'Cadastrar produto';
+            case '#cadastrar_pedido':
+                titulo.textContent = 'Cadastrar pedido';
+                conteudo.appendChild(criarDivCadastroPedido());
                 break;
-
-            case '#cadastrar_cliente': 
-                titulo.textContent = 'Cadastrar cliente'
-                var formulario = criarFormularioCliente();
-                conteudo.appendChild(formulario);
+            default:
                 break;
-
-            case '#cadastrar_pedido': 
-                titulo.textContent = 'Cadastrar pedido'
-
-                var tabela = document.createElement('table');
-
-                var botao = document.createElement('button');
-                botao.classList.add('botao')
-                botao.textContent = 'Finalizar pedido'
-
-                var valorTotal = document.createElement('p');
-                valorTotal.classList.add('valor_total')
-                valorTotal.textContent = 'Valor total: R$ 0.00'
-
-                var campoCliente = gerarCampo('Código do cliente','id_cliente')
-                var campoDescricaoPedido = gerarCampo('Descrição do pedido','descricao_pedido')
-
-                tabela = adicionarInteraçoesTabela(tabela, botao);
-                conteudo.appendChild(campoCliente);
-                conteudo.appendChild(campoDescricaoPedido)
-                conteudo.appendChild(tabela);
-                conteudo.appendChild(valorTotal);
-                conteudo.appendChild(botao);
-                break;
-
-            default: conteudo.appendChild(home());
-                titulo.textContent = 'Compay z'
-                break;
-
         }
     })
 }
 
+
 window.addEventListener('load', () => {
     titulo.textContent = 'Compay Z'
-    conteudo.appendChild(home());
+    conteudo.appendChild(subtituloCompayz())
     init();
 })
+
+export function atualizarConteudo() {
+    const url = window.location.href;
+    window.location.href = url + '/';
+    window.location.href = url
+}

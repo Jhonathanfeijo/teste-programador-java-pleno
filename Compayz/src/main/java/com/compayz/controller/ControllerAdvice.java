@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import com.compayz.domain.exception.cliente.ClienteNotAvailableException;
 import com.compayz.domain.exception.cliente.ClienteNotFoundException;
+import com.compayz.domain.exception.cliente.DuplicateClienteException;
 import com.compayz.domain.exception.pedido.PedidoNotFoundException;
 import com.compayz.domain.exception.produto.ProdutoNotAvailableException;
 import com.compayz.domain.exception.produto.ProdutoNotFoundException;
@@ -33,6 +34,10 @@ public class ControllerAdvice {
 
 	@ExceptionHandler(ClienteNotAvailableException.class)
 	public ResponseEntity handleClienteNotAvailableException(ClienteNotAvailableException ex) {
+		return ResponseEntity.badRequest().body(ex.getMessage());
+	}
+	@ExceptionHandler(DuplicateClienteException.class)
+	public ResponseEntity handleDuplicateClienteException(DuplicateClienteException ex) {
 		return ResponseEntity.badRequest().body(ex.getMessage());
 	}
 

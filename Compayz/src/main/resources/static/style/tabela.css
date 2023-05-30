@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Krona+One&family=Montserrat:wght@300;400;500;600&display=swap');
+
+:root {
+    --font-primaria: 'Montserrat', sans-serif;
+    --cor--background: linear-gradient(13deg, rgba(0, 0, 0, 1) 39%, rgba(0, 43, 128, 1) 100%);
+    --cor-primaria: #110066;
+    --cor-secundaria: #ffffff;
+    --cor-terciaria: #919191;
+}
+
+
+.tabela {
+    border: 2px var(--cor-secundaria) solid;
+    border-radius: 8px;
+}
+
+.cabecalho,
+.objeto {
+    height: 3rem;
+}
+
+.coluna {
+    padding: 0 10px;
+    text-align: center;
+    min-width: 2.2rem
+}
+
+.botaoModificarObjeto {
+    background-color: var(--cor-secundaria);
+    border: 1px solid var(--cor-secundaria);
+    color: var(--cor-primaria);
+    padding: 7px;
+    margin: 2px 5px;
+    border-radius: 5px;
+}
+
+.botaoCadastrarObjeto {
+    background-color: var(--cor-secundaria);
+    color: var(--cor-primaria);
+    align-self: flex-end;
+    padding: 12px;
+    margin: 5px 0;
+    border: 1px solid var(--cor-terciaria);
+    border-radius: 5px;
+}
+
+.botaoCadastrarObjetoCentralizado {
+    align-self: center;
+    padding: 20px 40px;
+    font-size: 20px;
+    font-weight: 500;
+    background-color: var(--cor-primaria);
+    color: var(--cor-secundaria);
+
+}
+.botao_alterar_quantidade_produto{
+    background-color: transparent;
+    color: var(--cor-secundaria);
+    border: 2px solid var(--cor-secundaria);
+    border-radius: 5px;
+    padding: 1px 10px;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.conteudo_objeto {
+    display: flex;
+    flex-direction: column;
+}
+
+.botaoCadastrarObjetoCentralizado:hover,
+.botaoCadastrarObjeto:hover,
+.botaoModificarObjeto:hover {
+    background-color: var(--cor-terciaria);
+    border: 1px solid var(--cor-terciaria);
+    color: var(--cor-secundaria);
+    cursor: pointer;
+}
+
+.valor_pedido{
+    margin: 8px 5px;
+}

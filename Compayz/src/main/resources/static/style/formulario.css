@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Krona+One&family=Montserrat:wght@300;400;500;600&display=swap');
+
+:root {
+  --font-primaria: 'Montserrat', sans-serif;
+  --cor--background: linear-gradient(13deg, rgba(0, 0, 0, 1) 39%, rgba(0, 43, 128, 1) 100%);
+  --cor-primaria: #011126;
+  --cor-secundaria: #ffffff;
+  --cor-terciaria: #919191;
+  --cor-quartenaria: #BFBFBF
+}
+
+.bk_modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  flex-direction: column;
+  justify-content: baseline;
+  align-items: center;
+}
+
+.div_formulario {
+  position: relative;
+  width: 28rem;
+  height: 38rem;
+  margin: 6rem;
+  background-color: var(--cor-primaria);
+  border: 2px solid var(--cor-secundaria);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: baseline;
+  color: var(--cor-secundaria);
+  gap: 1.2rem;
+}
+
+.titulo_formulario {
+  text-align: center;
+  font-weight: 500;
+  margin: 4rem 0 1rem 0;
+}
+
+.input_formulario {
+  height: 2.2rem;
+  width: 17rem;
+  font-family: var(--font-primaria);
+  font-weight: 500;
+  border: 1px solid var(--cor-secundaria);
+  border-radius: 3px;
+  padding: 0 0.5rem;
+
+}
+
+.div_input {
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  gap: 5px;
+  font-family: var(--font-primaria);
+  color: var(--cor-secundaria);
+  font-weight: 600;
+}
+
+.botao_formulario {
+  margin: 1.8rem;
+  height: 2.8rem;
+  width: 19rem;
+  border: 1px solid var(--cor-secundaria);
+  border-radius: 3px;
+}
+
+.botao_formulario:hover {
+  background-color: var(--cor-terciaria);
+  border: 1px solid var(--cor-terciaria);
+  color: var(--cor-secundaria);
+  cursor: pointer;
+}
+
+.input_readonly {
+  background-color: var(--cor-quartenaria);
+  border: 1px solid var(--cor-quartenaria)
+}
+
+.input_pedido {
+  margin: 6px 0;
+}
+
+.botao_fechar_formulario {
+  background-color: transparent;
+  color: var(--cor-secundaria);
+  right: 12px;
+  top: 12px;
+  position: absolute;
+  padding: 5px 12px;
+  border-radius: 5px;
+  font-size: 20px;
+}
+
+.botao_enviar_pedido {
+  padding: 1rem;
+  background-color: var(--cor-secundaria);
+  color: var(--cor-primaria);
+  border-radius: 8px;
+}
+
+.botao_enviar_pedido:hover {
+  cursor: pointer;
+  background-color: var(--cor-terciaria);
+  color: var(--cor-secundaria);
+}
+
+.botao_fechar_formulario:hover {
+  cursor: pointer;
+}
