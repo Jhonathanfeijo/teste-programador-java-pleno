@@ -1,0 +1,1 @@
+alter table pedido modify valor_total decimal(10,2);
